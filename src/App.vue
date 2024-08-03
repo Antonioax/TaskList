@@ -1,18 +1,13 @@
 <script setup>
+import AddTask from "@/components/AddTask.vue";
+
 import { ref } from "vue";
 import { useTodoStore } from "./store/todo";
 import { storeToRefs } from "pinia";
 
-const newTodo = ref("");
-
 const todoStore = useTodoStore();
 const { filteredTodo, showFinished } = storeToRefs(todoStore);
 const { addTodo, toggleTodo, toggleFilter } = todoStore;
-
-const addNewTodo = () => {
-  addTodo(newTodo.value);
-  newTodo.value = "";
-};
 </script>
 
 <template id="app">
@@ -23,17 +18,8 @@ const addNewTodo = () => {
       <div class="text-4xl font-thin mb-10">
         <span class="bg-emerald-500 rounded-lg px-2 mr-1">Task</span>List
       </div>
-      <input
-        type="text"
-        class="text-center py-2 rounded-xl shadow-xl w-full"
-        v-model="newTodo"
-      />
-      <button
-        class="bg-emerald-100 py-1 px-4 rounded-lg shadow-lg"
-        @click="addNewTodo"
-      >
-        Add Task
-      </button>
+
+      <AddTask />
 
       <div class="flex justify-start items-center w-full ml-4 mt-4">
         <input
