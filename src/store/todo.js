@@ -9,7 +9,16 @@ export const useTodoStore = defineStore("todo", {
         isFinished: false,
       },
     ],
+    showFinished: true,
   }),
+  getters: {
+    filteredTodo() {
+      if (!this.showFinished) {
+        return this.todo.filter((t) => !t.isFinished);
+      }
+      return this.todo;
+    },
+  },
   actions: {
     addTodo(text) {
       if (!text) return;
@@ -20,10 +29,11 @@ export const useTodoStore = defineStore("todo", {
       });
     },
     toggleTodo(id) {
-      console.log(id);
       const index = this.todo.findIndex((todo) => todo.id === id);
       this.todo[index].isFinished = !this.todo[index].isFinished;
-      console.log(this.todo[index].isFinished);
+    },
+    toggleFilter(newValue) {
+      this.showFinished = newValue;
     },
   },
 });
