@@ -19,5 +19,11 @@ export const useTodoStore = defineStore("todo", {
         isFinished: false,
       });
     },
+    toggleTodo(id) {
+      console.log(id);
+      const index = this.todo.findIndex((todo) => todo.id === id);
+      this.todo[index].isFinished = !this.todo[index].isFinished;
+      console.log(this.todo[index].isFinished);
+    },
   },
 });
