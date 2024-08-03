@@ -34,6 +34,10 @@ export const useTodoStore = defineStore("todo", {
       this.todo = this.todo.filter((t) => t.id !== id);
       this.updateStorage();
     },
+    removeAll(){
+      this.todo = [];
+      this.updateStorage();
+    },
     toggleTodo(id) {
       const index = this.todo.findIndex((todo) => todo.id === id);
       this.todo[index].isFinished = !this.todo[index].isFinished;
