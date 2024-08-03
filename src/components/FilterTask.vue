@@ -19,6 +19,6 @@ const { toggleFilter } = todoStore;
       v-model="showFinished"
       @change="() => toggleFilter(showFinished)"
     />
-    <label for="finished" class="text-xs ml-4">SHOW FINISHED TASKS</label>
+    <label for="finished" class="text-xs font-normal ml-2">Show finished tasks</label>
   </div>
 </template>
