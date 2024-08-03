@@ -9,8 +9,8 @@ import TaskList from "@/components/TaskList.vue";
     <section
       class="mt-20 flex flex-col gap-5 justify-center items-center w-[80%] max-w-[350px]"
     >
-      <div class="text-4xl font-thin mb-10">
-        <span class="bg-emerald-500 rounded-lg px-2 mr-1">Task</span>List
+      <div class="text-3xl font-thin mb-10">
+        <span class="bg-emerald-500 rounded-lg px-2 py-1 mr-1 font-thin">Task</span>List
       </div>
 
       <AddTask />

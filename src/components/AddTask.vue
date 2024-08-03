@@ -20,7 +20,7 @@ const addNewTodo = () => {
     v-model="newTodo"
   />
   <button
-    class="bg-emerald-100 py-1 px-4 rounded-lg shadow-lg"
+    class="bg-emerald-100 py-1 px-2 rounded-lg shadow-lg"
     @click="addNewTodo"
   >
     Add Task
