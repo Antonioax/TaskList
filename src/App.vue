@@ -1,5 +1,6 @@
 <script setup>
 import AddTask from "@/components/AddTask.vue";
+import FilterTask from "@/components/FilterTask.vue";
 
 import { ref } from "vue";
 import { useTodoStore } from "./store/todo";
@@ -20,17 +21,7 @@ const { addTodo, toggleTodo, toggleFilter } = todoStore;
       </div>
 
       <AddTask />
-
-      <div class="flex justify-start items-center w-full ml-4 mt-4">
-        <input
-          type="checkbox"
-          name="unfinished"
-          id="unfinished"
-          v-model="showFinished"
-          @change="() => toggleFilter(showFinished)"
-        />
-        <label for="unfinished" class="text-xs ml-4">SHOW FINISHED TASKS</label>
-      </div>
+      <FilterTask />
 
       <div class="mt-10 flex flex-col gap-2 w-full">
         <div
