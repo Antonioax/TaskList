@@ -1,11 +1,7 @@
 <script setup>
-const todos = [
-  {
-    id: 1,
-    text: "Clean room",
-    isFinished: false,
-  },
-];
+import { useTodoStore } from "./store/todo";
+
+const { todo } = useTodoStore();
 </script>
 
 <template id="app">
@@ -18,8 +14,11 @@ const todos = [
       Add Task
     </button>
 
-    <div v-for="todo in todos" class="mt-10 bg-emerald-900 text-white py-2 px-2 pl-4 rounded-lg shadow-lg flex justify-between items-center w-[80%] max-w-[350px]">
-      <div>{{ todo.text }}</div>
+    <div
+      v-for="t in todo"
+      class="mt-10 bg-emerald-900 text-white py-2 px-2 pl-4 rounded-lg shadow-lg flex justify-between items-center w-[80%] max-w-[350px]"
+    >
+      <div>{{ t.text }}</div>
       <button class="bg-emerald-950 py-1 px-4 rounded-lg shadow-lg">
         Done
       </button>
