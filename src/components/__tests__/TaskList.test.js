@@ -9,6 +9,7 @@ import { setActivePinia } from "pinia";
 describe("TaskList.vue", () => {
   let wrapper;
   let pinia;
+  let store;
 
   beforeEach(() => {
     pinia = createTestingPinia({
@@ -22,28 +23,10 @@ describe("TaskList.vue", () => {
           showFinished: true,
         },
       },
-      mocks: {
-        useTodoStore: () => ({
-          todo: [
-            { id: 1, text: "Task 1", isFinished: false },
-            { id: 2, text: "Task 2", isFinished: true },
-          ],
-          showFinished: true,
-          get filteredTodo() {
-            return this.showFinished
-              ? this.todo
-              : this.todo.filter((t) => !t.isFinished);
-          },
-          addTodo: vi.fn(),
-          removeTodo: vi.fn(),
-          toggleTodo: vi.fn(),
-          toggleFilter: vi.fn(),
-          removeAll: vi.fn(),
-        }),
-      },
     });
 
     setActivePinia(pinia);
+    store = useTodoStore(); // Get the store instance
 
     wrapper = mount(TaskList, { global: { plugins: [pinia] } });
   });
@@ -63,5 +46,23 @@ describe("TaskList.vue", () => {
 
     expect(wrapper.text()).toContain("Task 1");
     expect(wrapper.text()).not.toContain("Task 2");
+  });
+
+  it("should call toggleTodo when the toggle button is clicked", async () => {
+    const toggleTodoSpy = vi.spyOn(store, "toggleTodo");
+
+    // Debugging statements
+    const toggleButton = wrapper.find("button.toggleTodo");
+    console.log("Button exists:", toggleButton.exists());
+
+    await toggleButton.trigger("click");
+
+    await wrapper.vm.$nextTick();
+
+    // Debugging statements
+    console.log("toggleTodoSpy calls:", toggleTodoSpy.mock.calls);
+
+    expect(toggleTodoSpy).toHaveBeenCalledWith(1);
+    expect(toggleTodoSpy).toHaveBeenCalledTimes(1);
   });
 });

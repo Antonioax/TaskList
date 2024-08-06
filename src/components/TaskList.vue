@@ -4,7 +4,7 @@ import { storeToRefs } from "pinia";
 
 const todoStore = useTodoStore();
 const { filteredTodo } = storeToRefs(todoStore);
-const { addTodo, removeTodo, toggleTodo } = todoStore;
+const { removeTodo, toggleTodo } = todoStore;
 </script>
 
 <template>
@@ -15,14 +15,14 @@ const { addTodo, removeTodo, toggleTodo } = todoStore;
       >
         <div :class="t.isFinished && 'line-through'">{{ t.text }}</div>
         <button
-          class="bg-emerald-950 py-1 px-4 rounded-lg shadow-lg"
+          class="toggleTodo bg-emerald-950 py-1 px-4 rounded-lg shadow-lg"
           @click="() => toggleTodo(t.id)"
         >
           {{ !t.isFinished ? "Do" : "Undo" }}
         </button>
       </div>
       <button
-        class="bg-red-900 text-white h-6 px-2 text-xs rounded-r-lg"
+        class="removeTodo bg-red-900 text-white h-6 px-2 text-xs rounded-r-lg"
         @click="() => removeTodo(t.id)"
       >
         REMOVE
@@ -30,7 +30,5 @@ const { addTodo, removeTodo, toggleTodo } = todoStore;
     </div>
   </div>
 
-  <div v-else class="mt-20">
-    Add new tasks...
-  </div>
+  <div v-else class="mt-20">Add new tasks...</div>
 </template>
