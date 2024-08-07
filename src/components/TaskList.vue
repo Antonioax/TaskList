@@ -9,7 +9,11 @@ const { removeTodo, toggleTodo } = todoStore;
 
 <template>
   <div v-if="filteredTodo.length > 0" class="mt-5 flex flex-col gap-2 w-full">
-    <div v-for="t in filteredTodo" class="flex justify-center items-center">
+    <div
+      v-for="t in filteredTodo"
+      class="flex justify-center items-center"
+      data-test="todo"
+    >
       <div
         class="flex-1 bg-emerald-900 text-white py-2 px-2 pl-4 rounded-lg shadow-lg flex justify-between items-center"
       >
